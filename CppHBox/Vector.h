@@ -2,12 +2,12 @@
 
 namespace hb
 {
-	template<class Type, unsigned int size>
+	template<class Type, unsigned int count>
 	struct vector
 	{
 		union
 		{
-			Type arr[size];
+			Type arr[count];
 			struct
 			{
 				Type x, y, z, w;
@@ -18,21 +18,21 @@ namespace hb
 		constexpr const Type& operator[](unsigned int i) const;
 
 		template<class OtherType>
-		constexpr vector<Type, size>& operator+=(const OtherType s);
+		constexpr vector<Type, count>& operator+=(const OtherType s);
 		template<class OtherType>
-		constexpr vector<Type, size>& operator+=(const vector<OtherType, size>& v);
+		constexpr vector<Type, count>& operator+=(const vector<OtherType, count>& v);
 		template<class OtherType>
-		constexpr vector<Type, size>& operator-=(const OtherType s);
+		constexpr vector<Type, count>& operator-=(const OtherType s);
 		template<class OtherType>
-		constexpr vector<Type, size>& operator-=(const vector<OtherType, size>& v);
+		constexpr vector<Type, count>& operator-=(const vector<OtherType, count>& v);
 		template<class OtherType>
-		constexpr vector<Type, size>& operator*=(const OtherType s);
+		constexpr vector<Type, count>& operator*=(const OtherType s);
 		template<class OtherType>
-		constexpr vector<Type, size>& operator*=(const vector<OtherType, size>& v);
+		constexpr vector<Type, count>& operator*=(const vector<OtherType, count>& v);
 		template<class OtherType>
-		constexpr vector<Type, size>& operator/=(const OtherType s);
+		constexpr vector<Type, count>& operator/=(const OtherType s);
 		template<class OtherType>
-		constexpr vector<Type, size>& operator/=(const vector<OtherType, size>& v);
+		constexpr vector<Type, count>& operator/=(const vector<OtherType, count>& v);
 
 	private:
 	};
@@ -148,22 +148,22 @@ namespace hb
 		constexpr vec<Type>& operator/=(const vec<OtherType>& v);
 	};
 
-	template<class LeftType, class RightType, unsigned int size>
-	constexpr vector<LeftType, size> operator+(const vector<LeftType, size>& l, const RightType s);
-	template<class LeftType, class RightType, unsigned int size>
-	constexpr vector<LeftType, size> operator+(const vector<LeftType, size>& l, const vector<RightType, size>& r);
-	template<class LeftType, class RightType, unsigned int size>
-	constexpr vector<LeftType, size> operator-(const vector<LeftType, size>& l, const RightType s);
-	template<class LeftType, class RightType, unsigned int size>
-	constexpr vector<LeftType, size> operator-(const vector<LeftType, size>& l, const vector<RightType, size>& r);
-	template<class LeftType, class RightType, unsigned int size>
-	constexpr vector<LeftType, size> operator*(const vector<LeftType, size>& l, const RightType s);
-	template<class LeftType, class RightType, unsigned int size>
-	constexpr vector<LeftType, size> operator*(const vector<LeftType, size>& l, const vector<RightType, size>& r);
-	template<class LeftType, class RightType, unsigned int size>
-	constexpr vector<LeftType, size> operator/(const vector<LeftType, size>& l, const RightType s);
-	template<class LeftType, class RightType, unsigned int size>
-	constexpr vector<LeftType, size> operator/(const vector<LeftType, size>& l, const vector<RightType, size>& r);
+	template<class LeftType, class RightType, unsigned int count>
+	constexpr vector<LeftType, count> operator+(const vector<LeftType, count>& l, const RightType s);
+	template<class LeftType, class RightType, unsigned int count>
+	constexpr vector<LeftType, count> operator+(const vector<LeftType, count>& l, const vector<RightType, count>& r);
+	template<class LeftType, class RightType, unsigned int count>
+	constexpr vector<LeftType, count> operator-(const vector<LeftType, count>& l, const RightType s);
+	template<class LeftType, class RightType, unsigned int count>
+	constexpr vector<LeftType, count> operator-(const vector<LeftType, count>& l, const vector<RightType, count>& r);
+	template<class LeftType, class RightType, unsigned int count>
+	constexpr vector<LeftType, count> operator*(const vector<LeftType, count>& l, const RightType s);
+	template<class LeftType, class RightType, unsigned int count>
+	constexpr vector<LeftType, count> operator*(const vector<LeftType, count>& l, const vector<RightType, count>& r);
+	template<class LeftType, class RightType, unsigned int count>
+	constexpr vector<LeftType, count> operator/(const vector<LeftType, count>& l, const RightType s);
+	template<class LeftType, class RightType, unsigned int count>
+	constexpr vector<LeftType, count> operator/(const vector<LeftType, count>& l, const vector<RightType, count>& r);
 }
 
 #include "Vector.inl"

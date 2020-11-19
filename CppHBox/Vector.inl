@@ -1,16 +1,15 @@
-#include "Vector.h"
 namespace hb
 {
 #pragma region Selector operators
 
-	template<class Type, unsigned int size>
-	inline constexpr Type& vector<Type, size>::operator[](unsigned int i)
+	template<class Type, unsigned int count>
+	inline constexpr Type& vector<Type, count>::operator[](unsigned int i)
 	{
 		return arr[i];
 	}
 
-	template<class Type, unsigned int size>
-	inline constexpr const Type& vector<Type, size>::operator[](unsigned int i) const
+	template<class Type, unsigned int count>
+	inline constexpr const Type& vector<Type, count>::operator[](unsigned int i) const
 	{
 		return arr[i];
 	}
@@ -80,11 +79,11 @@ namespace hb
 		return *this;
 	}
 
-	template<class Type, unsigned int size>
+	template<class Type, unsigned int count>
 	template<class OtherType>
-	inline constexpr vector<Type, size>& hb::vector<Type, size>::operator+=(const OtherType s)
+	inline constexpr vector<Type, count>& hb::vector<Type, count>::operator+=(const OtherType s)
 	{
-		for (unsigned int i = 0; i < size; i++)
+		for (unsigned int i = 0; i < count; i++)
 			arr[i] += static_cast<Type>(s);
 		return *this;
 	}
@@ -116,11 +115,11 @@ namespace hb
 		return *this;
 	}
 
-	template<class Type, unsigned int size>
+	template<class Type, unsigned int count>
 	template<class OtherType>
-	inline constexpr vector<Type, size>& vector<Type, size>::operator+=(const vector<OtherType, size>& v)
+	inline constexpr vector<Type, count>& vector<Type, count>::operator+=(const vector<OtherType, count>& v)
 	{
-		for (unsigned int i = 0; i < size; i++)
+		for (unsigned int i = 0; i < count; i++)
 			arr[i] += static_cast<Type>(v.arr[i]);
 		return *this;
 	}
@@ -152,11 +151,11 @@ namespace hb
 		return *this;
 	}
 
-	template<class Type, unsigned int size>
+	template<class Type, unsigned int count>
 	template<class OtherType>
-	inline constexpr vector<Type, size>& vector<Type, size>::operator-=(const OtherType s)
+	inline constexpr vector<Type, count>& vector<Type, count>::operator-=(const OtherType s)
 	{
-		for (unsigned int i = 0; i < size; i++)
+		for (unsigned int i = 0; i < count; i++)
 			arr[i] -= static_cast<Type>(s);
 		return *this;
 	}
@@ -188,11 +187,11 @@ namespace hb
 		return *this;
 	}
 
-	template<class Type, unsigned int size>
+	template<class Type, unsigned int count>
 	template<class OtherType>
-	inline constexpr vector<Type, size>& vector<Type, size>::operator-=(const vector<OtherType, size>& v)
+	inline constexpr vector<Type, count>& vector<Type, count>::operator-=(const vector<OtherType, count>& v)
 	{
-		for (unsigned int i = 0; i < size; i++)
+		for (unsigned int i = 0; i < count; i++)
 			arr[i] -= static_cast<Type>(v.arr[i]);
 		return *this;
 	}
@@ -224,11 +223,11 @@ namespace hb
 		return *this;
 	}
 
-	template<class Type, unsigned int size>
+	template<class Type, unsigned int count>
 	template<class OtherType>
-	inline constexpr vector<Type, size>& vector<Type, size>::operator*=(const OtherType s)
+	inline constexpr vector<Type, count>& vector<Type, count>::operator*=(const OtherType s)
 	{
-		for (unsigned int i = 0; i < size; i++)
+		for (unsigned int i = 0; i < count; i++)
 			arr[i] *= static_cast<Type>(s);
 		return *this;
 	}
@@ -260,11 +259,11 @@ namespace hb
 		return *this;
 	}
 
-	template<class Type, unsigned int size>
+	template<class Type, unsigned int count>
 	template<class OtherType>
-	inline constexpr vector<Type, size>& vector<Type, size>::operator*=(const vector<OtherType, size>& v)
+	inline constexpr vector<Type, count>& vector<Type, count>::operator*=(const vector<OtherType, count>& v)
 	{
-		for (unsigned int i = 0; i < size; i++)
+		for (unsigned int i = 0; i < count; i++)
 			arr[i] *= static_cast<Type>(v.arr[i]);
 		return *this;
 	}
@@ -296,11 +295,11 @@ namespace hb
 		return *this;
 	}
 
-	template<class Type, unsigned int size>
+	template<class Type, unsigned int count>
 	template<class OtherType>
-	inline constexpr vector<Type, size>& vector<Type, size>::operator/=(const OtherType s)
+	inline constexpr vector<Type, count>& vector<Type, count>::operator/=(const OtherType s)
 	{
-		for (unsigned int i = 0; i < size; i++)
+		for (unsigned int i = 0; i < count; i++)
 			arr[i] /= static_cast<Type>(s);
 		return *this;
 	}
@@ -332,11 +331,11 @@ namespace hb
 		return *this;
 	}
 
-	template<class Type, unsigned int size>
+	template<class Type, unsigned int count>
 	template<class OtherType>
-	inline constexpr vector<Type, size>& vector<Type, size>::operator/=(const vector<OtherType, size>& v)
+	inline constexpr vector<Type, count>& vector<Type, count>::operator/=(const vector<OtherType, count>& v)
 	{
-		for (unsigned int i = 0; i < size; i++)
+		for (unsigned int i = 0; i < count; i++)
 			arr[i] /= static_cast<Type>(v.arr[i]);
 		return *this;
 	}
@@ -345,74 +344,74 @@ namespace hb
 
 #pragma region Binary operators
 
-	template<class LeftType, class RightType, unsigned int size>
-	inline constexpr vector<LeftType, size> operator+(const vector<LeftType, size>& l, const RightType s)
+	template<class LeftType, class RightType, unsigned int count>
+	inline constexpr vector<LeftType, count> operator+(const vector<LeftType, count>& l, const RightType s)
 	{
-		vector<LeftType, size> result;
-		for (unsigned int i = 0; i < size; i++)
+		vector<LeftType, count> result;
+		for (unsigned int i = 0; i < count; i++)
 			result.arr[i] = l.arr[i] + static_cast<LeftType>(s);
 		return result;
 	}
 
-	template<class LeftType, class RightType, unsigned int size>
-	constexpr vector<LeftType, size> operator+(const vector<LeftType, size>& l, const vector<RightType, size>& r)
+	template<class LeftType, class RightType, unsigned int count>
+	constexpr vector<LeftType, count> operator+(const vector<LeftType, count>& l, const vector<RightType, count>& r)
 	{
-		vector<LeftType, size> result;
-		for (unsigned int i = 0; i < size; i++)
+		vector<LeftType, count> result;
+		for (unsigned int i = 0; i < count; i++)
 			result.arr[i] = l.arr[i] + static_cast<LeftType>(r.arr[i]);
 		return result;
 	}
 
-	template<class LeftType, class RightType, unsigned int size>
-	constexpr vector<LeftType, size> operator-(const vector<LeftType, size>& l, const RightType s)
+	template<class LeftType, class RightType, unsigned int count>
+	constexpr vector<LeftType, count> operator-(const vector<LeftType, count>& l, const RightType s)
 	{
-		vector<LeftType, size> result;
-		for (unsigned int i = 0; i < size; i++)
+		vector<LeftType, count> result;
+		for (unsigned int i = 0; i < count; i++)
 			result.arr[i] = l.arr[i] - static_cast<LeftType>(s);
 		return result;
 	}
 
-	template<class LeftType, class RightType, unsigned int size>
-	constexpr vector<LeftType, size> operator-(const vector<LeftType, size>& l, const vector<RightType, size>& r)
+	template<class LeftType, class RightType, unsigned int count>
+	constexpr vector<LeftType, count> operator-(const vector<LeftType, count>& l, const vector<RightType, count>& r)
 	{
-		vector<LeftType, size> result;
-		for (unsigned int i = 0; i < size; i++)
+		vector<LeftType, count> result;
+		for (unsigned int i = 0; i < count; i++)
 			result.arr[i] = l.arr[i] - static_cast<LeftType>(r.arr[i]);
 		return result;
 	}
 
-	template<class LeftType, class RightType, unsigned int size>
-	constexpr vector<LeftType, size> operator*(const vector<LeftType, size>& l, const RightType s)
+	template<class LeftType, class RightType, unsigned int count>
+	constexpr vector<LeftType, count> operator*(const vector<LeftType, count>& l, const RightType s)
 	{
-		vector<LeftType, size> result;
-		for (unsigned int i = 0; i < size; i++)
+		vector<LeftType, count> result;
+		for (unsigned int i = 0; i < count; i++)
 			result.arr[i] = l.arr[i] * static_cast<LeftType>(s);
 		return result;
 	}
 
-	template<class LeftType, class RightType, unsigned int size>
-	constexpr vector<LeftType, size> operator*(const vector<LeftType, size>& l, const vector<RightType, size>& r)
+	template<class LeftType, class RightType, unsigned int count>
+	constexpr vector<LeftType, count> operator*(const vector<LeftType, count>& l, const vector<RightType, count>& r)
 	{
-		vector<LeftType, size> result;
-		for (unsigned int i = 0; i < size; i++)
+		vector<LeftType, count> result;
+		for (unsigned int i = 0; i < count; i++)
 			result.arr[i] = l.arr[i] * static_cast<LeftType>(r.arr[i]);
 		return result;
 	}
 
-	template<class LeftType, class RightType, unsigned int size>
-	constexpr vector<LeftType, size> operator/(const vector<LeftType, size>& l, const RightType s)
+	template<class LeftType, class RightType, unsigned int count>
+	constexpr vector<LeftType, count> operator/(const vector<LeftType, count>& l, const RightType s)
 	{
-		vector<LeftType, size> result;
-		for (unsigned int i = 0; i < size; i++)
+		vector<LeftType, count> result;
+		for (unsigned int i = 0; i < count; i++)
 			result.arr[i] = l.arr[i] / static_cast<LeftType>(s);
 		return result;
 	}
 
-	template<class LeftType, class RightType, unsigned int size>
-	constexpr vector<LeftType, size> operator/(const vector<LeftType, size>& l, const vector<RightType, size>& r)
+	template<class LeftType, class RightType, unsigned int count>
+	constexpr vector<LeftType, count> operator/(const vector<LeftType, count>& l, const vector<RightType, count>& r)
 	{
-		vector<LeftType, size> result;
-		for (unsigned int i = 0; i < size; i++)
+		vector<LeftType, count> result;
+		for (unsigned int i = 0; i < count; i++)
 			result.arr[i] = l.arr[i] / static_cast<LeftType>(r.arr[i]);
 		return result;
 	}
