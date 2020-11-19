@@ -70,7 +70,7 @@ struct List
 	/// Gets the number of elements in list
 	/// </summary>
 	/// <returns>Number of elements in list</returns>
-	virtual const size_t count() const = 0;
+	virtual const size_t _Count() const = 0;
 
 	/// <summary>
 	/// Gets the number of reserved elements
@@ -118,7 +118,7 @@ struct ArrayList : List<T>
 	/// O(1)
 	/// </summary>
 	/// <returns>Number of elements in list</returns>
-	const size_t count() const override
+	const size_t _Count() const override
 	{
 		if (last < first)
 			return 0;
@@ -137,14 +137,14 @@ struct ArrayList : List<T>
 
 	T& operator[](const size_t i) override
 	{
-		if (i < count())
+		if (i < _Count())
 			return first[i];
 		throw std::range_error("Index out of range");
 	}
 
 	const T& operator[](const size_t i) const override
 	{
-		if (i < count())
+		if (i < _Count())
 			return first[i];
 		throw std::range_error("Index out of range");
 	}
@@ -156,7 +156,8 @@ struct ArrayList : List<T>
 	/// <param name="item">to add to list</param>
 	void add(const T item) override
 	{
-		if (last + 1 <= cap) {
+		if (last + 1 <= cap)
+		{
 			last++;
 			*last = item;
 		}
@@ -183,14 +184,14 @@ struct ArrayList : List<T>
 	/// <param name="index">to insert at</param>
 	void insert(const T item, const size_t index) override
 	{
-		if (index == count())
+		if (index == _Count())
 			add(item);
-		else if (index > count())
+		else if (index > _Count())
 			throw std::range_error("Index out of range");
 		else
 		{
 			add(*last);
-			for (size_t i = count() - 2; i > index; i--)
+			for (size_t i = _Count() - 2; i > index; i--)
 				first[i] = first[i - 1];
 			first[index] = item;
 		}

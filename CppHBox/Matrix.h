@@ -4,11 +4,11 @@
 
 namespace hb
 {
-	template<class Type, unsigned int row_n, unsigned int col_n>
+	template<class _T, unsigned int row_n, unsigned int col_n>
 	struct matrix
 	{
-		typedef vector<Type, row_n> col_type;
-		typedef vector<Type, col_n> row_type;
+		typedef vector<_T, row_n> col_type;
+		typedef vector<_T, col_n> row_type;
 
 		row_type rows[row_n];
 
