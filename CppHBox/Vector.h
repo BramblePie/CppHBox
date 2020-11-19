@@ -3,88 +3,167 @@
 namespace hb
 {
 	template<class Type, unsigned int size>
-	struct Vector
+	struct vector
 	{
-		union {
+		union
+		{
 			Type arr[size];
-			struct {
+			struct
+			{
 				Type x, y, z, w;
 			};
 		};
 
-		Type& operator[](unsigned int i)
-		{
-			return arr[i];
-		}
+		constexpr Type& operator[](unsigned int i);
+		constexpr const Type& operator[](unsigned int i) const;
 
-		const Type& operator[](unsigned int i) const
-		{
-			return arr[i];
-		}
+		template<class OtherType>
+		constexpr vector<Type, size>& operator+=(const OtherType s);
+		template<class OtherType>
+		constexpr vector<Type, size>& operator+=(const vector<OtherType, size>& v);
+		template<class OtherType>
+		constexpr vector<Type, size>& operator-=(const OtherType s);
+		template<class OtherType>
+		constexpr vector<Type, size>& operator-=(const vector<OtherType, size>& v);
+		template<class OtherType>
+		constexpr vector<Type, size>& operator*=(const OtherType s);
+		template<class OtherType>
+		constexpr vector<Type, size>& operator*=(const vector<OtherType, size>& v);
+		template<class OtherType>
+		constexpr vector<Type, size>& operator/=(const OtherType s);
+		template<class OtherType>
+		constexpr vector<Type, size>& operator/=(const vector<OtherType, size>& v);
 
 	private:
 	};
 
 	template<class Type>
-	struct Vector<Type, 3>
+	using vec4 = vector<Type, 4>;
+
+	template<class Type>
+	using vec3 = vector<Type, 3>;
+
+	template<class Type>
+	using vec2 = vector<Type, 2>;
+
+	template<class Type>
+	using vec = vector<Type, 1>;
+
+	template<class Type>
+	struct vector<Type, 3>
 	{
-		union {
+		union
+		{
 			Type arr[3];
-			struct {
+			struct
+			{
 				Type x, y, z;
 			};
 		};
 
-		Type& operator[](unsigned int i)
-		{
-			return arr[i];
-		}
+		constexpr Type& operator[](unsigned int i);
+		constexpr const Type& operator[](unsigned int i) const;
 
-		const Type& operator[](unsigned int i) const
-		{
-			return arr[i];
-		}
+		template<class OtherType>
+		constexpr vec3<Type>& operator+=(const OtherType s);
+		template<class OtherType>
+		constexpr vec3<Type>& operator+=(const vec3<OtherType>& v);
+		template<class OtherType>
+		constexpr vec3<Type>& operator-=(const OtherType s);
+		template<class OtherType>
+		constexpr vec3<Type>& operator-=(const vec3<OtherType>& v);
+		template<class OtherType>
+		constexpr vec3<Type>& operator*=(const OtherType s);
+		template<class OtherType>
+		constexpr vec3<Type>& operator*=(const vec3<OtherType>& v);
+		template<class OtherType>
+		constexpr vec3<Type>& operator/=(const OtherType s);
+		template<class OtherType>
+		constexpr vec3<Type>& operator/=(const vec3<OtherType>& v);
 	};
 
 	template<class Type>
-	struct Vector<Type, 2>
+	struct vector<Type, 2>
 	{
-		union {
+		union
+		{
 			Type arr[2];
-			struct {
+			struct
+			{
 				Type x, y;
 			};
 		};
 
-		Type& operator[](unsigned int i)
-		{
-			return arr[i];
-		}
+		constexpr Type& operator[](unsigned int i);
+		constexpr const Type& operator[](unsigned int i) const;
 
-		const Type& operator[](unsigned int i) const
-		{
-			return arr[i];
-		}
+		template<class OtherType>
+		constexpr vec2<Type>& operator+=(const OtherType s);
+		template<class OtherType>
+		constexpr vec2<Type>& operator+=(const vec2<OtherType>& v);
+		template<class OtherType>
+		constexpr vec2<Type>& operator-=(const OtherType s);
+		template<class OtherType>
+		constexpr vec2<Type>& operator-=(const vec2<OtherType>& v);
+		template<class OtherType>
+		constexpr vec2<Type>& operator*=(const OtherType s);
+		template<class OtherType>
+		constexpr vec2<Type>& operator*=(const vec2<OtherType>& v);
+		template<class OtherType>
+		constexpr vec2<Type>& operator/=(const OtherType s);
+		template<class OtherType>
+		constexpr vec2<Type>& operator/=(const vec2<OtherType>& v);
 	};
 
 	template<class Type>
-	struct Vector<Type, 1>
+	struct vector<Type, 1>
 	{
-		union {
+		union
+		{
 			Type arr[1];
-			struct {
+			struct
+			{
 				Type x;
 			};
 		};
 
-		Type& operator[](unsigned int i)
-		{
-			return arr[i];
-		}
+		constexpr Type& operator[](unsigned int i);
+		constexpr const Type& operator[](unsigned int i) const;
 
-		const Type& operator[](unsigned int i) const
-		{
-			return arr[i];
-		}
+		template<class OtherType>
+		constexpr vec<Type>& operator+=(const OtherType s);
+		template<class OtherType>
+		constexpr vec<Type>& operator+=(const vec<OtherType>& v);
+		template<class OtherType>
+		constexpr vec<Type>& operator-=(const OtherType s);
+		template<class OtherType>
+		constexpr vec<Type>& operator-=(const vec<OtherType>& v);
+		template<class OtherType>
+		constexpr vec<Type>& operator*=(const OtherType s);
+		template<class OtherType>
+		constexpr vec<Type>& operator*=(const vec<OtherType>& v);
+		template<class OtherType>
+		constexpr vec<Type>& operator/=(const OtherType s);
+		template<class OtherType>
+		constexpr vec<Type>& operator/=(const vec<OtherType>& v);
 	};
+
+	template<class LeftType, class RightType, unsigned int size>
+	constexpr vector<LeftType, size> operator+(const vector<LeftType, size>& l, const RightType s);
+	template<class LeftType, class RightType, unsigned int size>
+	constexpr vector<LeftType, size> operator+(const vector<LeftType, size>& l, const vector<RightType, size>& r);
+	template<class LeftType, class RightType, unsigned int size>
+	constexpr vector<LeftType, size> operator-(const vector<LeftType, size>& l, const RightType s);
+	template<class LeftType, class RightType, unsigned int size>
+	constexpr vector<LeftType, size> operator-(const vector<LeftType, size>& l, const vector<RightType, size>& r);
+	template<class LeftType, class RightType, unsigned int size>
+	constexpr vector<LeftType, size> operator*(const vector<LeftType, size>& l, const RightType s);
+	template<class LeftType, class RightType, unsigned int size>
+	constexpr vector<LeftType, size> operator*(const vector<LeftType, size>& l, const vector<RightType, size>& r);
+	template<class LeftType, class RightType, unsigned int size>
+	constexpr vector<LeftType, size> operator/(const vector<LeftType, size>& l, const RightType s);
+	template<class LeftType, class RightType, unsigned int size>
+	constexpr vector<LeftType, size> operator/(const vector<LeftType, size>& l, const vector<RightType, size>& r);
 }
+
+#include "Vector.inl"
