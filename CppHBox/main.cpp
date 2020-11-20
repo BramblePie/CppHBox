@@ -14,13 +14,12 @@ int main(void)
 	using namespace cppb;
 
 	matrix<float, 2, 2> m22 = {};
-	matrix<int, 2, 2> n22 = {};
+	m22 += 1.0f;
 
-	m22 += 4;
-	m22 *= 2.7;
-	n22 += 2;
+	vec2<float> v2(1.0f, 2.2f);
 
-	m22 += n22;
+	auto n22 = m22 - v2;
+	auto p22 = v2 - m22;
 
 	system("pause");
 

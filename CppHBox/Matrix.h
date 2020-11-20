@@ -42,6 +42,25 @@ namespace cppb
 
 	private:
 	};
+
+	template<class LeftType, class RightType, unsigned int row_l_n, unsigned int col_l_n>
+	constexpr matrix<LeftType, row_l_n, col_l_n> operator+(const matrix<LeftType, row_l_n, col_l_n>& l, const RightType s);
+	template<class LeftType, class RightType, unsigned int row_l_n, unsigned int col_l_n>
+	constexpr matrix<LeftType, row_l_n, col_l_n> operator+(const RightType s, const matrix<LeftType, row_l_n, col_l_n>& r);
+	template<class LeftType, class RightType, unsigned int row_l_n, unsigned int col_l_n>
+	constexpr matrix<LeftType, row_l_n, col_l_n> operator+(const matrix<LeftType, row_l_n, col_l_n>& l, const matrix<RightType, row_l_n, col_l_n>& r);
+
+	// Braket-like rules with vector matrix operators
+	// a vector on the left ( as long as as many columns of the matrix ) acts as a row vector going over every row of the matrix, vice versa
+
+	template<class LeftType, class RightType, unsigned int row_l_n, unsigned int col_l_n>
+	constexpr matrix<LeftType, row_l_n, col_l_n> operator+(const matrix<LeftType, row_l_n, col_l_n>& m, const vector<RightType, row_l_n>& v);
+	template<class LeftType, class RightType, unsigned int row_r_n, unsigned int col_r_n>
+	constexpr matrix<LeftType, row_r_n, col_r_n> operator+(const vector<LeftType, col_r_n>& v, const matrix<RightType, row_r_n, col_r_n>& m);
+	template<class LeftType, class RightType, unsigned int row_l_n, unsigned int col_l_n>
+	constexpr matrix<LeftType, row_l_n, col_l_n> operator-(const matrix<LeftType, row_l_n, col_l_n>& m, const vector<RightType, row_l_n>& v);
+	template<class LeftType, class RightType, unsigned int row_r_n, unsigned int col_r_n>
+	constexpr matrix<LeftType, row_r_n, col_r_n> operator-(const vector<LeftType, col_r_n>& v, const matrix<RightType, row_r_n, col_r_n>& m);
 }
 
 #include "Matrix.inl"
