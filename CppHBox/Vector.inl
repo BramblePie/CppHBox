@@ -1,54 +1,65 @@
-#include "Vector.h"
-namespace hb
+#include <stdexcept>
+
+namespace cppb
 {
 #pragma region Selector operators
+
+#ifdef _DEBUG
+#define return_in_range if (i < count()) return arr[i];	\
+	throw std::out_of_range("index out of range");
+
+#else
+#define return_in_range() return arr[i];
+
+#endif // _DEBUG
 
 	template<class _T, unsigned int _Count>
 	inline constexpr _T& vector<_T, _Count>::operator[](unsigned int i)
 	{
-		return arr[i];
+		return_in_range
 	}
 
 	template<class _T, unsigned int _Count>
 	inline constexpr const _T& vector<_T, _Count>::operator[](unsigned int i) const
 	{
-		return arr[i];
+		return_in_range
 	}
 
 	template<class _T>
 	inline constexpr _T& vector<_T, 3>::operator[](unsigned int i)
 	{
-		return arr[i];
+		return_in_range
 	}
 
 	template<class _T>
 	inline constexpr const _T& vector<_T, 3>::operator[](unsigned int i) const
 	{
-		return arr[i];
+		return_in_range
 	}
 
 	template<class _T>
 	inline constexpr _T& vector<_T, 2>::operator[](unsigned int i)
 	{
-		return arr[i];
+		return_in_range
 	}
 
 	template<class _T>
 	inline constexpr const _T& vector<_T, 2>::operator[](unsigned int i) const
 	{
-		return arr[i];
+		return_in_range
 	}
 	template<class _T>
 	inline constexpr _T& vector<_T, 1>::operator[](unsigned int i)
 	{
-		return arr[i];
+		return_in_range
 	}
 
 	template<class _T>
 	inline constexpr const _T& vector<_T, 1>::operator[](unsigned int i) const
 	{
-		return arr[i];
+		return_in_range
 	}
+
 #pragma endregion
 
 #pragma region Unary operators
@@ -82,7 +93,7 @@ namespace hb
 
 	template<class _T, unsigned int _Count>
 	template<class OtherType>
-	inline constexpr vector<_T, _Count>& hb::vector<_T, _Count>::operator+=(const OtherType s)
+	inline constexpr vector<_T, _Count>& cppb::vector<_T, _Count>::operator+=(const OtherType s)
 	{
 		for (unsigned int i = 0; i < _Count; i++)
 			arr[i] += static_cast<_T>(s);

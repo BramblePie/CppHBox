@@ -37,5 +37,8 @@
     <None Include="Vector.inl">
       <Filter>Source Files</Filter>
     </None>
+    <None Include="Matrix.inl">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

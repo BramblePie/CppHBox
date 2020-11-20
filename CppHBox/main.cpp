@@ -2,13 +2,25 @@
 
 #include "BasicStructures.h"
 
+constexpr bool testing(int i, int j) { return i < j; }
+
+//constexpr void moretests(int i)
+//{
+//	static_assert(testing(i, 4), "big");
+//}
+
 int main(void)
 {
-	using namespace hb;
-	vec<float> v1 = 1.0f;
-	vec2<float> v2(v1, 2.0f);
-	vec3<float> v3(v2, 3.0f);
-	vec4<float> v4(v3, 99.0f);
+	using namespace cppb;
+
+	matrix<float, 2, 2> m22 = {};
+	matrix<int, 2, 2> n22 = {};
+
+	m22 += 4;
+	m22 *= 2.7;
+	n22 += 2;
+
+	m22 += n22;
 
 	system("pause");
 
