@@ -1,4 +1,5 @@
 #include "Matrix.h"
+
 namespace cppb
 {
 	template<class _T, unsigned int row_n, unsigned int col_n>
@@ -130,6 +131,23 @@ namespace cppb
 		for (unsigned int i = 0; i < col_r_n; i++)
 			for (unsigned int j = 0; j < row_r_n; j++)
 				result[i][j] = v[j] - m[i][j];
+		return result;
+	}
+
+	template<class LeftType, class RightType, unsigned int m, unsigned int n, unsigned int p>
+	constexpr auto operator*(const matrix<LeftType, m, n>& l, const matrix<RightType, n, p>& r) -> matrix<LeftType, m, p>
+	{
+		matrix<LeftType, m, p> result;
+		for (unsigned int i = 0; i < m; i++)
+		{
+			for (unsigned int j = 0; j < p; j++)
+			{
+				LeftType sum = static_cast<LeftType>(0);
+				for (unsigned int k = 0; k < n; k++)
+					sum += l[i][k] * r[k][j];
+				result[i][j] = sum;
+			}
+		}
 		return result;
 	}
 

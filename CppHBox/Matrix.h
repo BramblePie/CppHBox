@@ -61,6 +61,10 @@ namespace cppb
 	constexpr matrix<LeftType, row_l_n, col_l_n> operator-(const matrix<LeftType, row_l_n, col_l_n>& m, const vector<RightType, row_l_n>& v);
 	template<class LeftType, class RightType, unsigned int row_r_n, unsigned int col_r_n>
 	constexpr matrix<LeftType, row_r_n, col_r_n> operator-(const vector<LeftType, col_r_n>& v, const matrix<RightType, row_r_n, col_r_n>& m);
+
+	// Matrix, matrix multiplication A_mn * B_np = C_mp
+	template<class LeftType, class RightType, unsigned int m, unsigned int n, unsigned int p>
+	constexpr auto operator*(const matrix<LeftType, m, n>& l, const matrix<RightType, n, p>& r)->matrix<LeftType, m, p>;
 }
 
 #include "Matrix.inl"

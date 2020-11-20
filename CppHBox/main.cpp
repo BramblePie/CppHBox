@@ -13,13 +13,23 @@ int main(void)
 {
 	using namespace cppb;
 
-	matrix<float, 2, 2> m22 = {};
-	m22 += 1.0f;
+	matrix<float, 3, 2> A;
+	A[0][0] = 1;
+	A[0][1] = 2;
+	A[1][0] = 3;
+	A[1][1] = 4;
+	A[2][0] = 2;
+	A[2][1] = -1;
 
-	vec2<float> v2(1.0f, 2.2f);
+	matrix<float, 2, 3> B;
+	B[0][0] = 3;
+	B[0][1] = 1;
+	B[0][2] = 4;
+	B[1][0] = 2;
+	B[1][1] = 6;
+	B[1][2] = 9;
 
-	auto n22 = m22 - v2;
-	auto p22 = v2 - m22;
+	auto C = A * B;
 
 	system("pause");
 
